@@ -1,0 +1,32 @@
+{
+  "name": "tecactus/reniec-php",
+  "description": "RENIEC package for PHP",
+  "keywords": [
+    "reniec",
+    "php",
+    "dni",
+    "validar",
+    "validate",
+    "consultar",
+    "consulta dni",
+    "consulta dni sin codigo captcha",
+    "captcha"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paul Vidal",
+      "email": "paul@tecactus.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.5.0",
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tecactus\\Reniec\\": "src/"
+    }
+  }
+}
