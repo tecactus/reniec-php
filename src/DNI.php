@@ -16,7 +16,7 @@ class DNI
     {
         $this->baseUri = "https://tecactus.com/";
         $this->apiToken = $apiToken;
-        $this->client = new Client(['base_uri' => $this->baseUri, 'headers' => ['Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->apiToken]]);
+        $this->client = new Client(['base_uri' => $this->baseUri, 'verify' => false, 'headers' => ['Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->apiToken]]);
     }
 
     public function get($dni, $asArray = false)
