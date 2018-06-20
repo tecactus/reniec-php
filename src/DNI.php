@@ -18,7 +18,7 @@ class DNI
 
     public function __construct($apiToken)
     {
-        $this->baseUri = "https://tecactus.com/";
+        $this->baseUri = "https://consulta.pe/";
         $this->apiToken = $apiToken;
         $this->client = new Client(['base_uri' => $this->baseUri, 'verify' => __DIR__.'/cacert.pem', 'headers' => ['Accept' => 'application/json', 'Authorization' => "Bearer {$this->apiToken}"]]);
     }
