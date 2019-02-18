@@ -14,7 +14,7 @@ O agregar la siguiente línea a tu archivo composer.json:
 ```json
    "require": {
        ...
-       "tecactus/reniec-php": "1.*"
+       "tecactus/reniec-php": "2.*"
        ...
    }
 ```
