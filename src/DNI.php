@@ -51,11 +51,60 @@ class DNI
     	}
     }
 
+    public function validateDigit($dni, $digit)
+    {
+        return $this->validate($dni) && $this->validateHash($dni, $digit);
+    }
+
     protected function validate($value)
     {
         if (is_numeric($value)) {
             return strlen($value) == 8;
         }
         return false;
+    }
+
+    protected function validateHash($v, $h)
+    {
+        $identificationDocument = $v . '0';
+        $addition = 0;
+        $hash = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2 ];
+        $identificationDocumentLength = strlen($identificationDocument);
+
+        $identificationComponent = substr($identificationDocument, 0, $identificationDocumentLength - 1);
+
+        $identificationComponentLength = strlen($identificationComponent);
+
+        $diff = count($hash) - $identificationComponentLength;
+
+        for ($i = $identificationComponentLength - 1; $i >= 0; $i--)
+        {
+          $addition += ($identificationComponent[$i] - '0') * $hash[$i + $diff];
+        }
+
+        $addition = 11 - ($addition % 11);
+
+        if ($addition == 11)
+        {
+          $addition = 0;
+        }
+
+        $last = $identificationDocument[$identificationDocumentLength - 1];
+
+        $hashValue = '';
+
+        if (ctype_alpha($last))
+        {
+          $hashLetters = [ 'K', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ];
+          $hashValue = $hashLetters[$addition];
+        }
+
+        else if (is_numeric($last))
+        {
+          $hashNumbers = [ '6', '7', '8', '9', '0', '1', '1', '2', '3', '4', '5' ];
+          $hashValue = $hashNumbers[$addition];
+        }
+
+        return $h == $hashValue;
     }
 }
